@@ -2,6 +2,10 @@ import { FaTruckMoving } from 'react-icons/fa';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsFillBagCheckFill } from 'react-icons/bs';
 import { VscAccount } from 'react-icons/vsc';
+import { IoLogInOutline } from 'react-icons/io5';
+import { IoLogOutOutline } from 'react-icons/io5';
+
+import { Link } from 'react-router-dom';
 
 import './navbar.css'
 
@@ -29,11 +33,38 @@ export default function Navbar() {
                             <p>Hello, Baaka!</p>
                         </div>
                         <div className='second_icon'>
-                            <p><AiOutlineHeart /></p>
-                            <p><BsFillBagCheckFill /></p>
+                            <Link to="/" className='link'><AiOutlineHeart /></Link>
+                            <Link to="/cart" className='link'><BsFillBagCheckFill /></Link>
                         </div>
                     </div>
                 </div>
-            </div></>
+            </div>
+            <div className='header'>
+                <div className='container'>
+                    <div className='nav'>
+                        <ul>
+                            <li>
+                                <Link to='/' className='link'>Home</Link>
+                            </li>
+                            <li>
+                                <Link to='/products' className='link'>Products</Link>
+                            </li>
+                            <li>
+                                <Link to='/about' className='link'>About</Link>
+                            </li>
+                            <li>
+                                <Link to='/contact' className='link'>Contact</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className='auth'>
+                        <button><IoLogInOutline /></button>
+                        {/* <p>Login</p> */}
+                        <button><IoLogOutOutline /></button>
+                        {/* <p>Logout</p> */}
+                    </div>
+                </div>
+            </div>
+            </>
     );
 };
