@@ -1,5 +1,6 @@
 import Navbar from "./Components/NavBar"
 import { BrowserRouter } from "react-router-dom"
+import Rout from "./Components/Rout"
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
 
       <BrowserRouter>
       <Navbar />
+      <Rout />
       </BrowserRouter>
 
      </div> 
