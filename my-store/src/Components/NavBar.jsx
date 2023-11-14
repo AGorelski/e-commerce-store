@@ -10,9 +10,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
 
 import './navbar.css'
+import { useState } from 'react';
 
-export default function Navbar() {
+export default function Navbar({searchBtn}) {
 
+    const [search, setSearch] = useState()
     const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
 
     return(
@@ -27,8 +29,8 @@ export default function Navbar() {
                         <img src="/logo.png" alt='logo'></img>
                     </div>
                     <div className='search_box'>
-                        <input type="text" value='' placeholder='Search the product you need' autoComplete='off' />
-                        <button>Search</button>
+                        <input type="text" value={search} placeholder='Search the product you need' autoComplete='off' onChange={(e) => setSearch(e.target.value)}/>
+                        <button onClick={() => searchBtn (search)}>Search</button>
                     </div>
                     <div className='icon'>
                         {
