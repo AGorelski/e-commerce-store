@@ -1,6 +1,6 @@
 import { FaTruckMoving } from 'react-icons/fa';
 import { AiOutlineHeart } from 'react-icons/ai';
-import { BsFillBagCheckFill } from 'react-icons/bs';
+import { BsBagCheck } from 'react-icons/bs';
 import { VscAccount } from 'react-icons/vsc';
 import { IoLogInOutline } from 'react-icons/io5';
 import { IoLogOutOutline } from 'react-icons/io5';
@@ -45,7 +45,7 @@ export default function Navbar() {
                        
                         <div className='second_icon'>
                             <Link to="/" className='link'><AiOutlineHeart /></Link>
-                            <Link to="/cart" className='link'><BsFillBagCheckFill /></Link>
+                            <Link to="/cart" className='link'><BsBagCheck /></Link>
                         </div>
                     </div>
                 </div>

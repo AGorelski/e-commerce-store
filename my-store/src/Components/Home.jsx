@@ -5,6 +5,11 @@ import { FaTruckMoving } from 'react-icons/fa';
 import { FcMoneyTransfer } from 'react-icons/fc';
 import { TbDiscount } from 'react-icons/tb';
 import { FiPhoneCall } from 'react-icons/fi';
+import { BsBagCheck } from 'react-icons/bs';
+import { HiOutlineEye } from 'react-icons/hi';
+import { AiOutlineHeart } from 'react-icons/ai';
+
+import HomeProducts from "./HomeProducts";
 
 import './home.css'
 
@@ -97,6 +102,48 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="product">
+                <h2>Top Products</h2>
+                <div className="container">
+                    {
+                        HomeProducts.map((curElm) =>
+                        {
+                            return(
+                                <div className="box" key={curElm.id}>
+                                    <div className="img_box">
+                                        <img src={curElm.Img} alt={curElm.Title}></img>
+                                        <div className="icon">
+                                            <li><BsBagCheck /></li>
+                                            <li><HiOutlineEye /></li>
+                                            <li><AiOutlineHeart /></li> 
+                                        </div>
+                                    </div>
+                                    <div className="detail">
+                                        <p>{curElm.Category}</p>
+                                        <h3>{curElm.Title}</h3>
+                                        <h4>{curElm.Price}</h4>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                    <div className="box"></div>
+                </div>
+            </div>
+            <div className="banner">
+                <div className="container">
+                    <div className="detail">
+                        <h4>LATEST PRODUCT ADDED</h4>
+                        <h3>So nice Lutenica</h3>
+                        <p>$2.50</p>
+                        <Link to='/products' className="link">Shop now  <BsArrowRight /></Link>
+                    </div>
+                    <div className="img_box">
+                        <img src="LutenicaHD.png" alt="lutenica" />
+                    </div>
+                </div>
+                
             </div>
         </div>
     )
