@@ -7,15 +7,44 @@ import { TbDiscount } from 'react-icons/tb';
 import { FiPhoneCall } from 'react-icons/fi';
 import { BsBagCheck } from 'react-icons/bs';
 import { HiOutlineEye } from 'react-icons/hi';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineCloseCircle } from 'react-icons/ai';
 
 import HomeProducts from "./HomeProducts";
 
 import './home.css'
 
-export default function Home() {
+export default function Home({detail, view, close, setClose}) {
     return(
         <div>
+            {
+                close ?
+                <div className="product_detail">
+                    <div className="container">
+                        <button onClick={() => setClose(false)} className="closeBtn"><AiOutlineCloseCircle /></button>
+                        {
+                            detail.map((curElm) =>
+                            {
+                                return(
+                                    <div className="product_box">
+                                        <div className="img_box">
+                                            <img src={curElm.Img} alt={curElm.Title}></img>
+                                        </div>
+                                        <div className="detail">
+                                            <h4>{curElm.Category}</h4>
+                                            <h2>{curElm.Title}</h2>
+                                            <p>Something to print</p>
+                                            <h3>{curElm.Price}</h3>
+                                            <button>Add to Cart</button>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                        <div className="product-box"></div>
+                    </div>
+                </div> : null
+
+            }
             <div className="top_banner">
                 <div className="container">
                     <div className="detail">
@@ -115,7 +144,7 @@ export default function Home() {
                                         <img src={curElm.Img} alt={curElm.Title}></img>
                                         <div className="icon">
                                             <li><BsBagCheck /></li>
-                                            <li><HiOutlineEye /></li>
+                                            <li onClick={() => view (curElm)}><HiOutlineEye /></li>
                                             <li><AiOutlineHeart /></li> 
                                         </div>
                                     </div>

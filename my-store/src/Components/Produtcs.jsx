@@ -3,10 +3,11 @@ import HomeProducts from "./HomeProducts"
 import { BsBagCheck } from 'react-icons/bs';
 import { HiOutlineEye } from 'react-icons/hi';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import './products.css'
 
-export default function Products({product, setProduct}){
+export default function Products({product, setProduct, detail, view, close, setClose}){
     
     const filterProduct = (product) =>
     {
@@ -23,6 +24,36 @@ export default function Products({product, setProduct}){
 
     return(
         <div>
+            {
+                close ?
+                <div className="product_detail">
+                    <div className="container">
+                        <button onClick={() => setClose(false)} className="closeBtn"><AiOutlineCloseCircle /></button>
+                        {
+                            detail.map((curElm) =>
+                            {
+                                return(
+                                    <div className="product_box">
+                                        <div className="img_box">
+                                            <img src={curElm.Img} alt={curElm.Title}></img>
+                                        </div>
+                                        <div className="detail">
+                                            <h4>{curElm.Category}</h4>
+                                            <h2>{curElm.Title}</h2>
+                                            <p>Something to print</p>
+                                            <h3>{curElm.Price}</h3>
+                                            <button>Add to Cart</button>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                        <div className="product-box"></div>
+                    </div>
+                </div> : null
+
+            }
+            
             <div className="products">
                 <h2>Products</h2>
                 <div className="container">
@@ -48,7 +79,7 @@ export default function Products({product, setProduct}){
                                                 <img src={curElm.Img} alt={curElm.Title}></img>
                                                 <div className="icon">
                                                     <li><BsBagCheck /></li>
-                                                    <li><HiOutlineEye /></li>
+                                                    <li onClick={() => view (curElm)}><HiOutlineEye /></li>
                                                     <li><AiOutlineHeart /></li> 
                                                 </div>
                                             </div>
