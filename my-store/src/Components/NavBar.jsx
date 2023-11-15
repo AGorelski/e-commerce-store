@@ -1,11 +1,22 @@
 import { FaTruckMoving } from 'react-icons/fa';
 import { AiOutlineHeart } from 'react-icons/ai';
-import { BsFillBagCheckFill } from 'react-icons/bs';
+import { BsBagCheck } from 'react-icons/bs';
 import { VscAccount } from 'react-icons/vsc';
+import { IoLogInOutline } from 'react-icons/io5';
+import { IoLogOutOutline } from 'react-icons/io5';
+
+import { useAuth0 } from "@auth0/auth0-react";
+
+import { Link } from 'react-router-dom';
 
 import './navbar.css'
+import { useState } from 'react';
 
-export default function Navbar() {
+export default function Navbar({searchBtn}) {
+
+    const [search, setSearch] = useState()
+    const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
+
     return(
         <><div className='free'>
             <div className='icon'>
@@ -18,22 +29,61 @@ export default function Navbar() {
                         <img src="/logo.png" alt='logo'></img>
                     </div>
                     <div className='search_box'>
-                        <input type="text" value='' placeholder='Search the product you need' autoComplete='off' />
-                        <button>Search</button>
+                        <input type="text" value={search} placeholder='Search the product you need' autoComplete='off' onChange={(e) => setSearch(e.target.value)}/>
+                        <button onClick={() => searchBtn (search)}>Search</button>
                     </div>
                     <div className='icon'>
-                        <div className='account'>
-                            <div className='user_icon'>
-                            <VscAccount />
+                        {
+                            isAuthenticated &&
+                            (
+                            <div className='account'>
+                                <div className='user_icon'>
+                                    <VscAccount />
+                                </div>
+                                <p>Hello, {user.name}!</p>
                             </div>
-                            <p>Hello, Baaka!</p>
-                        </div>
+                            )
+                        }
+                       
                         <div className='second_icon'>
-                            <p><AiOutlineHeart /></p>
-                            <p><BsFillBagCheckFill /></p>
+                            <Link to="/" className='link'><AiOutlineHeart /></Link>
+                            <Link to="/cart" className='link'><BsBagCheck /></Link>
                         </div>
                     </div>
                 </div>
-            </div></>
+            </div>
+            <div className='header'>
+                <div className='container'>
+                    <div className='nav'>
+                        <ul>
+                            <li>
+                                <Link to='/' className='link'>Home</Link>
+                            </li>
+                            <li>
+                                <Link to='/products' className='link'>Products</Link>
+                            </li>
+                            <li>
+                                <Link to='/about' className='link'>About</Link>
+                            </li>
+                            <li>
+                                <Link to='/contact' className='link'>Contact</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className='auth'>
+                        {
+                            isAuthenticated ?
+                            <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}><IoLogOutOutline /></button>
+                            :
+                            <button onClick={() => loginWithRedirect()}><IoLogInOutline /></button>
+                        }
+                        
+                        {/* <p>Login</p> */}
+                       
+                        {/* <p>Logout</p> */}
+                    </div>
+                </div>
+            </div>
+            </>
     );
 };
