@@ -11,9 +11,13 @@ import { AiOutlineHeart, AiOutlineCloseCircle } from 'react-icons/ai';
 
 import HomeProducts from "./HomeProducts";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 import './home.css'
 
-export default function Home({detail, view, close, setClose}) {
+
+export default function Home({detail, view, close, setClose, addToCart}) {
+    const {loginWithRedirect, isAuthenticated} = useAuth0();
     return(
         <div>
             {
@@ -33,7 +37,7 @@ export default function Home({detail, view, close, setClose}) {
                                             <h4>{curElm.Category}</h4>
                                             <h2>{curElm.Title}</h2>
                                             <p>Something to print</p>
-                                            <h3>{curElm.Price}</h3>
+                                            <h3>${curElm.Price}</h3>
                                             <button>Add to Cart</button>
                                         </div>
                                     </div>
@@ -143,7 +147,13 @@ export default function Home({detail, view, close, setClose}) {
                                     <div className="img_box">
                                         <img src={curElm.Img} alt={curElm.Title}></img>
                                         <div className="icon">
-                                            <li><BsBagCheck /></li>
+                                            {
+                                                isAuthenticated ?
+                                                <li onClick={() => addToCart (curElm)}><BsBagCheck /></li>
+                                                :
+                                                <li onClick={() => loginWithRedirect ()}><BsBagCheck /></li>
+                                            }
+                                            
                                             <li onClick={() => view (curElm)}><HiOutlineEye /></li>
                                             <li><AiOutlineHeart /></li> 
                                         </div>
@@ -151,7 +161,7 @@ export default function Home({detail, view, close, setClose}) {
                                     <div className="detail">
                                         <p>{curElm.Category}</p>
                                         <h3>{curElm.Title}</h3>
-                                        <h4>{curElm.Price}</h4>
+                                        <h4>${curElm.Price}</h4>
                                     </div>
                                 </div>
                             )
