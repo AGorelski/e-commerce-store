@@ -45,7 +45,7 @@ export default function Products({product, setProduct, detail, view, close, setC
                                             <h2>{curElm.Title}</h2>
                                             <p>Something to print</p>
                                             <h3>${curElm.Price}</h3>
-                                            <button>Add to Cart</button>
+                                            <button onClick={() => addToCart(curElm)}>Add to Cart</button>
                                         </div>
                                     </div>
                                 )
