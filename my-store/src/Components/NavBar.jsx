@@ -1,13 +1,13 @@
 import { FaTruckMoving } from 'react-icons/fa';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsBagCheck } from 'react-icons/bs';
-import { VscAccount } from 'react-icons/vsc';
 import { IoLogInOutline } from 'react-icons/io5';
 import { IoLogOutOutline } from 'react-icons/io5';
 
+
 import { Link } from 'react-router-dom';
 
-import '../../assets/styles/navbar.css'
+import './navbar.css'
 import { useState } from 'react';
 
 export default function Navbar({searchBtn}) {
@@ -30,7 +30,7 @@ export default function Navbar({searchBtn}) {
                         <button onClick={() => searchBtn (search)}>Search</button>
                     </div>
                     <div className='icon'>
-                        {/* {
+                        {/* {/* {
                             isAuthenticated &&
                             (
                             <div className='account'>
@@ -41,6 +41,7 @@ export default function Navbar({searchBtn}) {
                             </div>
                             )
                         } */}
+                        
                        
                         <div className='second_icon'>
                             <Link to="/" className='link'><AiOutlineHeart /></Link>
@@ -68,15 +69,14 @@ export default function Navbar({searchBtn}) {
                         </ul>
                     </div>
                     <div className='auth'>
-                        {/* {
+                        {/* {/* {
                             isAuthenticated ?
                             <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}><IoLogOutOutline /></button>
                             :
                             <button onClick={() => loginWithRedirect()}><IoLogInOutline /></button>
                         } */}
-
-                        <button><IoLogOutOutline /></button>
                         <button><IoLogInOutline /></button>
+                        <button><IoLogOutOutline /></button>
                         
                         {/* <p>Login</p> */}
                        

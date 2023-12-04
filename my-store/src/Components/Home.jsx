@@ -145,6 +145,7 @@ export default function Home({detail, view, close, setClose, addToCart}) {
                                         <img src={curElm.Img} alt={curElm.Title}></img>
                                         <div className="icon">
                                             {/* {
+                                            {/* {
                                                 isAuthenticated ?
                                                 <li onClick={() => addToCart (curElm)}><BsBagCheck /></li>
                                                 :

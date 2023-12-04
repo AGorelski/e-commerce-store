@@ -5,10 +5,11 @@ import { HiOutlineEye } from 'react-icons/hi';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
-import '../../assets/styles/products.css'
+import '../assets/styles/products.css'
 
 export default function Products({product, setProduct, detail, view, close, setClose, addToCart}){
     
+    //const {loginWithRedirect, isAuthenticated} = useAuth0();
     const filterProduct = (product) =>
     {
         const update = HomeProducts.filter((x) =>
@@ -84,6 +85,7 @@ export default function Products({product, setProduct, detail, view, close, setC
                                                         :
                                                         <li onClick={() => loginWithRedirect ()}><BsBagCheck /></li>
                                                     } */}
+
                                                     <li onClick={() => addToCart (curElm)}><BsBagCheck /></li>
                                                     <li onClick={() => view (curElm)}><HiOutlineEye /></li>
                                                     <li><AiOutlineHeart /></li> 
