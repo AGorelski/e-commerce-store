@@ -75,8 +75,9 @@ export default function Navbar({searchBtn}) {
                             :
                             <button onClick={() => loginWithRedirect()}><IoLogInOutline /></button>
                         } */}
-                        <button><IoLogInOutline /></button>
-                        <button><IoLogOutOutline /></button>
+
+                        <Link to="/login" className='link'><IoLogInOutline /></Link>
+                        <Link to="/logout" className='link'><IoLogOutOutline /></Link>
                         
                         {/* <p>Login</p> */}
                        
