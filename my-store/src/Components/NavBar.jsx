@@ -7,7 +7,7 @@ import { IoLogOutOutline } from 'react-icons/io5';
 
 import { Link } from 'react-router-dom';
 
-import './navbar.css'
+import '../assets/styles/navbar.css'
 import { useState } from 'react';
 
 export default function Navbar({searchBtn}) {
