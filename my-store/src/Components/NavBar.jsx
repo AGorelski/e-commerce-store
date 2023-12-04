@@ -5,17 +5,14 @@ import { VscAccount } from 'react-icons/vsc';
 import { IoLogInOutline } from 'react-icons/io5';
 import { IoLogOutOutline } from 'react-icons/io5';
 
-import { useAuth0 } from "@auth0/auth0-react";
-
 import { Link } from 'react-router-dom';
 
-import './navbar.css'
+import '../../assets/styles/navbar.css'
 import { useState } from 'react';
 
 export default function Navbar({searchBtn}) {
 
     const [search, setSearch] = useState()
-    const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
 
     return(
         <><div className='free'>
@@ -33,7 +30,7 @@ export default function Navbar({searchBtn}) {
                         <button onClick={() => searchBtn (search)}>Search</button>
                     </div>
                     <div className='icon'>
-                        {
+                        {/* {
                             isAuthenticated &&
                             (
                             <div className='account'>
@@ -43,7 +40,7 @@ export default function Navbar({searchBtn}) {
                                 <p>Hello, {user.name}!</p>
                             </div>
                             )
-                        }
+                        } */}
                        
                         <div className='second_icon'>
                             <Link to="/" className='link'><AiOutlineHeart /></Link>
@@ -71,12 +68,15 @@ export default function Navbar({searchBtn}) {
                         </ul>
                     </div>
                     <div className='auth'>
-                        {
+                        {/* {
                             isAuthenticated ?
                             <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}><IoLogOutOutline /></button>
                             :
                             <button onClick={() => loginWithRedirect()}><IoLogInOutline /></button>
-                        }
+                        } */}
+
+                        <button><IoLogOutOutline /></button>
+                        <button><IoLogInOutline /></button>
                         
                         {/* <p>Login</p> */}
                        
