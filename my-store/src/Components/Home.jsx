@@ -11,13 +11,11 @@ import { AiOutlineHeart, AiOutlineCloseCircle } from 'react-icons/ai';
 
 import HomeProducts from "./HomeProducts";
 
-import { useAuth0 } from "@auth0/auth0-react";
-
-import './home.css'
+import '../assets/styles/home.css'
 
 
 export default function Home({detail, view, close, setClose, addToCart}) {
-    const {loginWithRedirect, isAuthenticated} = useAuth0();
+    // const {loginWithRedirect, isAuthenticated} = useAuth0();
     return(
         <div>
             {
@@ -147,12 +145,13 @@ export default function Home({detail, view, close, setClose, addToCart}) {
                                     <div className="img_box">
                                         <img src={curElm.Img} alt={curElm.Title}></img>
                                         <div className="icon">
-                                            {
+                                            {/* {
                                                 isAuthenticated ?
                                                 <li onClick={() => addToCart (curElm)}><BsBagCheck /></li>
                                                 :
                                                 <li onClick={() => loginWithRedirect ()}><BsBagCheck /></li>
-                                            }
+                                            } */}
+                                            <li onClick={() => addToCart (curElm)}><BsBagCheck /></li>
                                             
                                             <li onClick={() => view (curElm)}><HiOutlineEye /></li>
                                             <li><AiOutlineHeart /></li> 
