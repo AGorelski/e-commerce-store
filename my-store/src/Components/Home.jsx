@@ -11,7 +11,7 @@ import { AiOutlineHeart, AiOutlineCloseCircle } from 'react-icons/ai';
 
 import HomeProducts from "./HomeProducts";
 
-import '../../assets/styles/home.css'
+import '../assets/styles/home.css'
 
 
 export default function Home({detail, view, close, setClose, addToCart}) {

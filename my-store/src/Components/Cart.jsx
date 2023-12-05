@@ -2,7 +2,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 import { Link } from "react-router-dom"
 
-import '../../assets/styles/cart.css'
+import '../assets/styles/cart.css'
 
 export default function Cart({cart, setCart}) {
     //Increase quantity

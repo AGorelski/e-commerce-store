@@ -4,7 +4,7 @@ import { RiTiktokFill } from 'react-icons/ri';
 import { FcGoogle } from 'react-icons/fc';
 import { FaLocationDot } from 'react-icons/fa6';
 
-import '../../assets/styles/footer.css'
+import '../assets/styles/footer.css'
 
 export default function Footer(){
     return(
