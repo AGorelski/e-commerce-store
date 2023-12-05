@@ -1,8 +1,8 @@
 // import HomeProducts from "./HomeProducts"
 
 // import { BsBagCheck } from 'react-icons/bs';
-import { HiOutlineEye } from 'react-icons/hi';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { HiOutlineEye } from "react-icons/hi";
+import { AiOutlineHeart } from "react-icons/ai";
 // import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import "../assets/styles/products.css";
@@ -27,6 +27,13 @@ export default function Products() {
 
   const [productList, setProductList] = useState([]);
 
+  //New product state
+   const [newProductName, setNewProductName] = useState("");
+   const [newProductCategory, setNewProductCategory] = useState("");
+   const [newProductDescription, setNewProductDescription] = useState("");
+   const [newProductImage, setNewProductImage] = useState("");
+   const [newProductPrice, setNewProductPrice] = useState(0);
+
   useEffect(() => {
     Services.getProducts()
       .then((data) => {
@@ -38,10 +45,34 @@ export default function Products() {
       });
   }, []);
 
+  const onSubmitProduct = async () => {
+    try {
+        await Services.addNewProduct(
+            newProductName,
+            newProductCategory,
+            newProductDescription,
+            newProductImage,
+            newProductPrice
+        );
+
+        Services.getProducts();
+    } catch (error) {
+        console.error(error);
+    }
+  }
+
   return (
     <div>
       <div className="products">
         <h2>Products</h2>
+        <div className="add-product">
+          <input type="text" placeholder="Product name..." onChange={(e) => setNewProductName(e.target.value)} />
+          <input type="text" placeholder="Product category..." onChange={(e) => setNewProductCategory(e.target.value)}/>
+          <input type="text" placeholder="Product description..." onChange={(e) => setNewProductDescription(e.target.value)}/>
+          <input type="text" placeholder="Product image..." onChange={(e) => setNewProductImage(e.target.value)}/>
+          <input type="number" placeholder="Product price..." onChange={(e) => setNewProductPrice(Number(e.target.value))}/>
+          <button onClick={onSubmitProduct}>Add Product</button>
+        </div>
         <div className="container">
           <div className="product-box">
             <div className="content">
