@@ -1,13 +1,13 @@
 // import HomeProducts from "./HomeProducts"
 
 // import { BsBagCheck } from 'react-icons/bs';
-import { HiOutlineEye } from "react-icons/hi";
-import { AiOutlineHeart } from "react-icons/ai";
+
 // import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import "../assets/styles/products.css";
 import { useEffect, useState } from "react";
 import * as Services from "../config/Services";
+import Item from "./items/Item";
 
 export default function Products() {
   // {product, setProduct, detail, view, close, setClose, addToCart}
@@ -28,86 +28,95 @@ export default function Products() {
   const [productList, setProductList] = useState([]);
 
   //New product state
-   const [newProductName, setNewProductName] = useState("");
-   const [newProductCategory, setNewProductCategory] = useState("");
-   const [newProductDescription, setNewProductDescription] = useState("");
-   const [newProductImage, setNewProductImage] = useState("");
-   const [newProductPrice, setNewProductPrice] = useState(0);
+  const [newProductName, setNewProductName] = useState("");
+  const [newProductCategory, setNewProductCategory] = useState("");
+  const [newProductDescription, setNewProductDescription] = useState("");
+  const [newProductImage, setNewProductImage] = useState("");
+  const [newProductPrice, setNewProductPrice] = useState(0);
+
+  Services.getProducts()
+    .then((data) => {
+      setProductList(data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
   useEffect(() => {
-    Services.getProducts()
-      .then((data) => {
-        console.log(data); // This will log the actual data
-        setProductList(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    Services.getProducts();
   }, []);
 
   const onSubmitProduct = async () => {
     try {
-        await Services.addNewProduct(
-            newProductName,
-            newProductCategory,
-            newProductDescription,
-            newProductImage,
-            newProductPrice
-        );
+      await Services.addNewProduct(
+        newProductName,
+        newProductCategory,
+        newProductDescription,
+        newProductImage,
+        newProductPrice
+      );
 
-        Services.getProducts();
+      // Clear the input fields by resetting the state
+      setNewProductName("");
+      setNewProductCategory("");
+      setNewProductDescription("");
+      setNewProductImage("");
+      //setNewProductPrice(0);
     } catch (error) {
-        console.error(error);
+      console.error(error);
     }
-  }
+  };
 
   return (
     <div>
       <div className="products">
         <h2>Products</h2>
         <div className="add-product">
-          <input type="text" placeholder="Product name..." onChange={(e) => setNewProductName(e.target.value)} />
-          <input type="text" placeholder="Product category..." onChange={(e) => setNewProductCategory(e.target.value)}/>
-          <input type="text" placeholder="Product description..." onChange={(e) => setNewProductDescription(e.target.value)}/>
-          <input type="text" placeholder="Product image..." onChange={(e) => setNewProductImage(e.target.value)}/>
-          <input type="number" placeholder="Product price..." onChange={(e) => setNewProductPrice(Number(e.target.value))}/>
+          <input
+            type="text"
+            placeholder="Product name..."
+            value={newProductName}
+            onChange={(e) => setNewProductName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Product category..."
+            value={newProductCategory}
+            onChange={(e) => setNewProductCategory(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Product description..."
+            value={newProductDescription}
+            onChange={(e) => setNewProductDescription(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Product image..."
+            value={newProductImage}
+            onChange={(e) => setNewProductImage(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Product price..."
+            //value={newProductPrice}
+            onChange={(e) => setNewProductPrice(Number(e.target.value))}
+          />
           <button onClick={onSubmitProduct}>Add Product</button>
         </div>
         <div className="container">
           <div className="product-box">
             <div className="content">
               {productList.map((product) => (
-                // <div className="product_box" key={product.id}>
-                //     <div className="img_box">
-                //         <img src={product.ImageUrl} alt={product.Name}></img>
-                //     </div>
-                //     <div className="detail">
-                //         <h4>{product.Category}</h4>
-                //         <h2>{product.Name}</h2>
-                //         <p>{product.Description}</p>
-                //         <h3>${product.Price}</h3>
-                //         <button onClick={() => addToCart(curElm)}>Add to Cart</button>
-                //     </div>
-                // </div>
-
-                <div className="box" key={product.id}>
-                  <div className="img_box">
-                    <img src={product.ImageUrl} alt={product.Name}></img>
-                    <div className="icon">
-                      <li>
-                        <HiOutlineEye />
-                      </li>
-                      <li>
-                        <AiOutlineHeart />
-                      </li>
-                    </div>
-                  </div>
-                  <div className="detail">
-                    <p>{product.Category}</p>
-                    <h3>{product.Name}</h3>
-                    <h4>${product.Price}</h4>
-                  </div>
-                </div>
+                <Item
+                  key={product.id} // Make sure to specify a unique 'key' prop
+                  id={product.id}
+                  Name={product.Name}
+                  Category={product.Category}
+                  Description={product.Description}
+                  ImageUrl={product.ImageUrl}
+                  Price={product.Price}
+                />
               ))}
             </div>
           </div>

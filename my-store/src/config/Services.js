@@ -1,7 +1,8 @@
-import { getDocs, collection, doc, addDoc } from "firebase/firestore"
+import { getDocs, collection, doc, addDoc, deleteDoc, updateDoc } from "firebase/firestore"
 import { db } from "./firebase";
 
 const productsCollectionRef = collection(db, "products");
+
 
 export const getProducts = async () => {
     const data = await getDocs(productsCollectionRef);
@@ -22,4 +23,15 @@ export const addNewProduct = async (name, category, description, imageUrl, price
         ImageUrl: imageUrl,
         Price: price,
     });
+
+}
+
+export const deleteProduct = async (id) => {
+    const productDoc = doc(db,"products", id);
+    await deleteDoc(productDoc);
+}
+
+export const updateProductTitle = async (id, newName) => {
+    const productDoc = doc(db,"products", id);
+    await updateDoc(productDoc,{ Name: newName } );
 }
