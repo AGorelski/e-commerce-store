@@ -8,6 +8,7 @@ import "../assets/styles/products.css";
 import { useEffect, useState } from "react";
 import * as Services from "../config/Services";
 import Item from "./items/Item";
+import Modal from "./Modal/AddProductModal";
 
 export default function Products() {
   // {product, setProduct, detail, view, close, setClose, addToCart}
@@ -16,7 +17,7 @@ export default function Products() {
   // {
   //     const update = HomeProducts.filter((x) =>
   //     {
-  //         return x.Category === product;
+  //         return x.category === product;
   //     })
   //     setProduct(update);
   // }
@@ -33,6 +34,11 @@ export default function Products() {
   const [newProductDescription, setNewProductDescription] = useState("");
   const [newProductImage, setNewProductImage] = useState("");
   const [newProductPrice, setNewProductPrice] = useState(0);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   Services.getProducts()
     .then((data) => {
@@ -72,7 +78,11 @@ export default function Products() {
       <div className="products">
         <h2>Products</h2>
         <div className="add-product">
-          <input
+
+          <button onClick={handleOpenModal}>Open Modal</button>
+          {showModal && <Modal onClose={handleCloseModal} />}
+
+          {/* <input
             type="text"
             placeholder="Product name..."
             value={newProductName}
@@ -102,7 +112,7 @@ export default function Products() {
             //value={newProductPrice}
             onChange={(e) => setNewProductPrice(Number(e.target.value))}
           />
-          <button onClick={onSubmitProduct}>Add Product</button>
+          <button onClick={onSubmitProduct}>Add Product</button> */}
         </div>
         <div className="container">
           <div className="product-box">
@@ -111,11 +121,11 @@ export default function Products() {
                 <Item
                   key={product.id} // Make sure to specify a unique 'key' prop
                   id={product.id}
-                  Name={product.Name}
-                  Category={product.Category}
-                  Description={product.Description}
-                  ImageUrl={product.ImageUrl}
-                  Price={product.Price}
+                  name={product.name}
+                  category={product.category}
+                  description={product.description}
+                  imageUrl={product.imageUrl}
+                  price={product.price}
                 />
               ))}
             </div>
@@ -137,10 +147,10 @@ export default function Products() {
                                             <img src={curElm.Img} alt={curElm.Title}></img>
                                         </div>
                                         <div className="detail">
-                                            <h4>{curElm.Category}</h4>
+                                            <h4>{curElm.category}</h4>
                                             <h2>{curElm.Title}</h2>
                                             <p>Something to print</p>
-                                            <h3>${curElm.Price}</h3>
+                                            <h3>${curElm.price}</h3>
                                             <button onClick={() => addToCart(curElm)}>Add to Cart</button>
                                         </div>
                                     </div>
@@ -190,9 +200,9 @@ export default function Products() {
                                                 </div>
                                             </div>
                                             <div className="detail">
-                                                <p>{curElm.Category}</p>
+                                                <p>{curElm.category}</p>
                                                 <h3>{curElm.Title}</h3>
-                                                <h4>${curElm.Price}</h4>
+                                                <h4>${curElm.price}</h4>
                                             </div>
                                         </div>
                                     )

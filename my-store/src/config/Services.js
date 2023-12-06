@@ -17,11 +17,11 @@ export const getProducts = async () => {
 
 export const addNewProduct = async (name, category, description, imageUrl, price) => {
     await addDoc(productsCollectionRef, {
-        Name: name,
-        Category: category,
-        Description: description,
-        ImageUrl: imageUrl,
-        Price: price,
+        name: name,
+        category: category,
+        description: description,
+        imageUrl: imageUrl,
+        price: price,
     });
 
 }
@@ -31,7 +31,7 @@ export const deleteProduct = async (id) => {
     await deleteDoc(productDoc);
 }
 
-export const updateProductTitle = async (id, newName) => {
+export const updateProductName = async (id, newName) => {
     const productDoc = doc(db,"products", id);
-    await updateDoc(productDoc,{ Name: newName } );
+    await updateDoc(productDoc,{ name: newName } );
 }

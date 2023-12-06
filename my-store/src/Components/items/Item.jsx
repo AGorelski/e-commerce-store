@@ -7,7 +7,7 @@ import * as Services from "../../config/Services";
 
 export default function Item(props) { // Use a single props object
     
-    const { id, Name, Category, Description, ImageUrl, Price } = props; // Destructure props
+    const { id, name, category, description, imageUrl, price } = props; // Destructure props
 
     const [updatedName, setUpdatedName] = useState("");
     
@@ -30,7 +30,7 @@ export default function Item(props) { // Use a single props object
     return (
         <div className="box" key={id}>
             <div className="img_box">
-                <img src={ImageUrl} alt={Name}></img>
+                <img src={imageUrl} alt={name}></img>
                 <div className="icon">
                     <li>
                         <HiOutlineEye />
@@ -41,16 +41,16 @@ export default function Item(props) { // Use a single props object
                 </div>
             </div>
             <div className="detail">
-                <p>{Category}</p>
-                <h3>{Name}</h3>
-                <h4>${Price}</h4>
+                <p>{category}</p>
+                <h3>{name}</h3>
+                <h4>${price}</h4>
             </div>
 
             <button onClick={() => onDeleteProduct(id)}>
                 Delete Product
             </button>
             <div>
-                <button onClick={() => onUpdateProductName(id)}>Update Name</button>
+                <button onClick={() => onUpdateProductName(id)}>Update name</button>
 
                 <input type="text" placeholder='Add new name...' onChange={(e) => setUpdatedName(e.target.value)} />
             </div>
