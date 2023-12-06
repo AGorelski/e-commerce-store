@@ -40,16 +40,22 @@ export default function Products() {
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  Services.getProducts()
-    .then((data) => {
-      setProductList(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  // Services.getProducts()
+  //   .then((data) => {
+  //     setProductList(data);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
 
   useEffect(() => {
-    Services.getProducts();
+    Services.getProducts()
+      .then((data) => {
+        setProductList(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   // const onSubmitProduct = async () => {
