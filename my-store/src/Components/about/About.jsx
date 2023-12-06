@@ -33,7 +33,7 @@ const About = () => {
       </div>
 
       <div className="store-image">
-        <img src="../public/magazin.JPG" alt="Magazin Gorelski Store" />
+        <img src="/magazin.JPG" alt="Magazin Gorelski Store" />
       </div>
     </div>
   );
