@@ -51,8 +51,15 @@ const Modal = ({ onClose }) => {
     }
   };
 
+  const handleBackdropClick = (event) => {
+    // Check if the click is on the backdrop (modal) and not the content
+    if (event.currentTarget === event.target) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="modal">
+    <div className="modal" onClick={handleBackdropClick}>
       <div className="modal-content">
         <span className="close" onClick={onClose}>
           &times;

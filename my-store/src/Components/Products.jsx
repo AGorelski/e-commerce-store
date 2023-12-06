@@ -81,40 +81,6 @@ export default function Products() {
           <button onClick={handleOpenModal} className="add-product-btn">Add Product</button>
           {showModal && <Modal onClose={handleCloseModal} />}
         </div>
-          
-
-
-          {/* <input
-            type="text"
-            placeholder="Product name..."
-            value={newProductName}
-            onChange={(e) => setNewProductName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Product category..."
-            value={newProductCategory}
-            onChange={(e) => setNewProductCategory(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Product description..."
-            value={newProductDescription}
-            onChange={(e) => setNewProductDescription(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Product image..."
-            value={newProductImage}
-            onChange={(e) => setNewProductImage(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Product price..."
-            //value={newProductPrice}
-            onChange={(e) => setNewProductPrice(Number(e.target.value))}
-          />
-          <button onClick={onSubmitProduct}>Add Product</button> */}
         
         <div className="container">
           <div className="product-box">

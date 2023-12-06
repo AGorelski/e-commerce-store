@@ -2,48 +2,84 @@ import React, { useState } from "react";
 import * as Services from "../../config/Services";
 
 const EditProductModal = ({ onClose, id }) => {
-  const [updatedName, setUpdatedName] = useState("");
-  const [updatedCategory, setUpdatedCategory] = useState("");
+  const [productData, setProductData] = useState({
+    name: "",
+    category: "",
+    description: "",
+    image: "",
+    price: 0,
+  });
 
-  const onUpdateProductName = async () => {
+  const handleInputChange = (e) => {
+    setProductData({ ...productData, [e.target.name]: e.target.value });
+  };
+
+  const updateProductInfo = async () => {
     try {
-      await Services.updateProductName(id, updatedName);
-      onClose(); // Close modal after update
+      await Services.updateProduct(id, productData);
+      onClose(); // Close modal after successful update
+      // Optionally, show a success message to the user
     } catch (error) {
       console.error(error);
     }
   };
 
-  const onUpdateProductCategory = async () => {
-    try {
-      await Services.updateProductCategory(id, updatedCategory);
-      onClose(); // Close modal after update
-    } catch (error) {
-      console.error(error);
+  const handleBackdropClick = (event) => {
+    // Check if the click is on the backdrop (modal) and not the content
+    if (event.currentTarget === event.target) {
+      onClose();
     }
   };
 
   return (
-    <div className="modal">
+    <div className="modal" onClick={handleBackdropClick}>
       <div className="modal-content">
-        <span className="close" onClick={onClose}>&times;</span>
-        <p>This is a Modal!</p>
+        <span className="close" onClick={onClose}>
+          &times;
+        </span>
+        <p>Edit Product Information</p>
 
         <input
           type="text"
-          placeholder="Add new name..."
-          value={updatedName}
-          onChange={(e) => setUpdatedName(e.target.value)}
+          name="name"
+          placeholder="Product name..."
+          value={productData.name}
+          onChange={handleInputChange}
         />
-        <button onClick={onUpdateProductName}>Update name</button>
 
         <input
           type="text"
-          placeholder="Add new category..."
-          value={updatedCategory} // Bind to updatedCategory
-          onChange={(e) => setUpdatedCategory(e.target.value)} // Update updatedCategory
+          name="name"
+          placeholder="Product category..."
+          value={productData.category}
+          onChange={handleInputChange}
         />
-        <button onClick={onUpdateProductCategory}>Update category</button>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Product description..."
+          value={productData.description}
+          onChange={handleInputChange}
+        />
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Product image..."
+          value={productData.image}
+          onChange={handleInputChange}
+        />
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Product price..."
+          value={productData.price}
+          onChange={handleInputChange}
+        />
+
+        <button onClick={updateProductInfo}>Update Product</button>
       </div>
     </div>
   );

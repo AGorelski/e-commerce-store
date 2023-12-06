@@ -31,15 +31,10 @@ export const deleteProduct = async (id) => {
     await deleteDoc(productDoc);
 }
 
-export const updateProductName = async (id, newName) => {
-    const productDoc = doc(db,"products", id);
-    await updateDoc(productDoc,{ name: newName } );
-}
-
-export const updateProductCategory = async (id, newCategory) => {
-    const productDoc = doc(db,"products", id);
-    await updateDoc(productDoc,{ category: newCategory } );
-}
+export const updateProduct = async (id, updatedFields) => {
+    const productDoc = doc(db, "products", id);
+    await updateDoc(productDoc, updatedFields);
+};
 
 
 
