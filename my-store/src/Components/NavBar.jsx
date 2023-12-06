@@ -3,6 +3,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsBagCheck } from "react-icons/bs";
 import { IoLogInOutline } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
@@ -20,9 +21,17 @@ export default function Navbar({ searchBtn }) {
 
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
 
+  const [userEmail, setUserEmail] = useState(""); // Add state for user email
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setIsAuthenticated(!!user);
+      if (user) {
+        setIsAuthenticated(true);
+        setUserEmail(user.email); // Set the user's email
+      } else {
+        setIsAuthenticated(false);
+        setUserEmail(""); // Reset the email if logged out
+      }
     });
 
     return () => unsubscribe(); // Clean up the subscription
@@ -64,25 +73,29 @@ export default function Navbar({ searchBtn }) {
             <button onClick={() => searchBtn(search)}>Search</button>
           </div>
           <div className="icon">
-            {/* {/* {
-                            isAuthenticated &&
-                            (
-                            <div className='account'>
-                                <div className='user_icon'>
-                                    <VscAccount />
-                                </div>
-                                <p>Hello, {user.name}!</p>
-                            </div>
-                            )
-                        } */}
-
             <div className="second_icon">
-              <Link to="/" className="link">
-                <AiOutlineHeart />
-              </Link>
-              <Link to="/cart" className="link">
-                <BsBagCheck />
-              </Link>
+              {isAuthenticated ? (
+                <>
+                  <span className="user-email">Hello, {userEmail}</span>{" "}
+                  {/* Display user email */}
+                  <FaUserCircle className="user-icon"/>
+                  <Link to="/" className="link">
+                    <AiOutlineHeart />
+                  </Link>
+                  <Link to="/cart" className="link">
+                    <BsBagCheck />
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/" className="link">
+                    <AiOutlineHeart />
+                  </Link>
+                  <Link to="/cart" className="link">
+                    <BsBagCheck />
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -115,15 +128,17 @@ export default function Navbar({ searchBtn }) {
           </div>
           <div className="auth">
             {isAuthenticated ? (
-              <button onClick={handleLogoutClick}>
-                <label className="logout-label">Log out of your account</label>
-                <IoLogOutOutline />
-              </button>
-            ) : (
-                <button onClick={handleLoginClick}>
-                    <label className="login-label">Log in to your account</label>
-                    <IoLogInOutline />
+              <>
+                <button onClick={handleLogoutClick}>
+                  <label className="logout-label">Log out</label>
+                  <IoLogOutOutline />
                 </button>
+              </>
+            ) : (
+              <button onClick={handleLoginClick}>
+                <label className="login-label">Log in or Sign up</label>
+                <IoLogInOutline />
+              </button>
             )}
           </div>
 

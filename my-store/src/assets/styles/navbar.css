@@ -82,10 +82,25 @@
     margin-right: 5px;
     margin-top: 2px;
 }
-.main_header .container .icon .second_icon
-{
+.main_header .container .icon .second_icon {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
+
+.main_header .container .icon .second_icon .user-email {
+    margin-right: 10px; /* Adjusted spacing */
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.main_header .container .icon .second_icon .user-icon {
+    font-size: 25px; /* Adjust the size as needed */
+    margin-right: 20px; /* Provides separation from the next icons */
+    color: #333; /* Adjust color as needed */
+}
+
 .main_header .container .icon .second_icon .link
 {
     margin-right: 5px;
