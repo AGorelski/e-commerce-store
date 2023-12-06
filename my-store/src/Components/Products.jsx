@@ -29,11 +29,11 @@ export default function Products() {
   const [productList, setProductList] = useState([]);
 
   //New product state
-  const [newProductName, setNewProductName] = useState("");
-  const [newProductCategory, setNewProductCategory] = useState("");
-  const [newProductDescription, setNewProductDescription] = useState("");
-  const [newProductImage, setNewProductImage] = useState("");
-  const [newProductPrice, setNewProductPrice] = useState(0);
+  // const [newProductName, setNewProductName] = useState("");
+  // const [newProductCategory, setNewProductCategory] = useState("");
+  // const [newProductDescription, setNewProductDescription] = useState("");
+  // const [newProductImage, setNewProductImage] = useState("");
+  // const [newProductPrice, setNewProductPrice] = useState(0);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -52,35 +52,37 @@ export default function Products() {
     Services.getProducts();
   }, []);
 
-  const onSubmitProduct = async () => {
-    try {
-      await Services.addNewProduct(
-        newProductName,
-        newProductCategory,
-        newProductDescription,
-        newProductImage,
-        newProductPrice
-      );
+  // const onSubmitProduct = async () => {
+  //   try {
+  //     await Services.addNewProduct(
+  //       newProductName,
+  //       newProductCategory,
+  //       newProductDescription,
+  //       newProductImage,
+  //       newProductPrice
+  //     );
 
-      // Clear the input fields by resetting the state
-      setNewProductName("");
-      setNewProductCategory("");
-      setNewProductDescription("");
-      setNewProductImage("");
-      //setNewProductPrice(0);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     // Clear the input fields by resetting the state
+  //     setNewProductName("");
+  //     setNewProductCategory("");
+  //     setNewProductDescription("");
+  //     setNewProductImage("");
+  //     //setNewProductPrice(0);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <div>
       <div className="products">
-        <h2>Products</h2>
-        <div className="add-product">
-
-          <button onClick={handleOpenModal}>Open Modal</button>
+        <div className="products-header">
+          <h2>Products</h2>
+          <button onClick={handleOpenModal} className="add-product-btn">Add Product</button>
           {showModal && <Modal onClose={handleCloseModal} />}
+        </div>
+          
+
 
           {/* <input
             type="text"
@@ -113,7 +115,7 @@ export default function Products() {
             onChange={(e) => setNewProductPrice(Number(e.target.value))}
           />
           <button onClick={onSubmitProduct}>Add Product</button> */}
-        </div>
+        
         <div className="container">
           <div className="product-box">
             <div className="content">

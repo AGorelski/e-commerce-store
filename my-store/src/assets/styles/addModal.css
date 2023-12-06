@@ -1,34 +1,73 @@
 .modal {
     position: fixed;
-    z-index: 1;
+    z-index: 1000; /* High z-index to ensure it's on top */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center; /* Aligns modal vertically */
+    justify-content: center; /* Aligns modal horizontally */
+    background-color: rgba(0, 0, 0, 0.6); /* Darker background for better focus on modal */
+    animation: fadeIn 0.3s; /* Smooth fade-in effect */
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    text-align: center;
+    position: relative;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 80%; /* Responsive width */
+    max-width: 500px; /* Maximum width */
+    text-align: left; /* Align text to the left */
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    position: absolute; /* Positioning relative to the modal-content */
+    top: 10px; /* Adjusted to fit inside the modal-content */
+    right: 10px; /* Adjusted to fit inside the modal-content */
+    font-size: 24px; /* Size of the close icon */
     font-weight: bold;
     cursor: pointer;
+    border: none;
+    background-color: transparent; /* Ensure background is transparent */
+    outline: none; /* Remove outline to avoid box on focus */
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
+    color: #333; /* Darker color on hover for visibility */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Input Field Styles */
+.modal-content input[type="text"],
+.modal-content input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+}
+
+/* Button Styles */
+.modal-content button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
 }

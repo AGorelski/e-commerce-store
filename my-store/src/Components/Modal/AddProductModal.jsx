@@ -57,7 +57,7 @@ const Modal = ({ onClose }) => {
         <span className="close" onClick={onClose}>
           &times;
         </span>
-        <p>This is a Modal!</p>
+        <p>Add Information for the new product</p>
         <input
           type="text"
           placeholder="Product name..."
