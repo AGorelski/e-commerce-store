@@ -34,26 +34,35 @@
     padding: 10px 10px;
     transition: 0.5s;
 }
-.footer .container .about .detail .icon
-{
-    font-size: 20px;
-    margin-top: 20px;
-    display: flex;
+.footer .container .about .detail .icon {
+    display: grid; /* Using grid layout for icons */
+    grid-template-columns: repeat(4, auto); /* Adjust number of columns as necessary */
+    gap: 10px; /* Space between icons */
+    align-items: center; /* Center items vertically */
+    justify-content: start; /* Align items to the start of the container */
+    padding: 0;
 }
-.footer .container .about .detail .icon li
-{
-    margin-left: 20px;
-    list-style: none;
-    padding: 10px 10px;
-    box-shadow: rgba(0, 0, 0,0.15) 1.95px 1.95px 2.6px;
-    cursor: pointer;
-    transition: 0.5s;
+.footer .container .about .detail .icon a {
+    display: flex; /* Flexbox for centering icon content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    font-size: 22px;
+    background: #ffffff; /* Icon background color */
+    border: 1px solid #ddd; /* Border for the icon box */
+    border-radius: 10px; /* Rounded corners for the icon box */
+    width: 50px; /* Width of the icon box */
+    height: 50px; /* Height of the icon box */
+    color: #010f1c; /* Icon color */
+    text-decoration: none; /* Remove underline from icons */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: all 0.3s ease; /* Transition for hover effect */
 }
-.footer .container .about .detail .icon li:hover
-{
-    background: #0989ff;
-    color: white;
-    border-radius: 5px;
+.footer .container .about .detail .icon a:hover {
+    color: #ffffff; /* Color of icon on hover */
+    background: #0989ff; /* Background color of icon on hover */
+    border-color: #0989ff; /* Border color of icon on hover */
+    transform: translateY(-2px); /* Slight raise effect on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
 }
 .footer .container .account
 {
@@ -109,3 +118,25 @@
 {
     color: #0989ff;
 }
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 20px; /* Reduced padding on smaller screens */
+    }
+    .footer .container {
+        flex-direction: column; /* Stack the footer sections on small screens */
+        align-items: center; /* Center the sections */
+    }
+    .footer .container .about, 
+    .footer .container .account, 
+    .footer .container .page {
+        max-width: 100%; /* Full width on small screens */
+        margin-right: 0; /* Reset margin */
+        margin-top: 20px; /* Space between sections */
+    }
+    .footer .container .about .detail .icon {
+        justify-content: center; /* Center icons on small screens */
+    }
+}
+
+

@@ -29,18 +29,34 @@ export default function Footer() {
               <FaLocationDot /> Yakoruda, Belitsa
             </li>
             <div className="icon">
-              <li>
+              <a
+                href="https://www.facebook.com/magazinGorelski"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <AiFillFacebook />
-              </li>
-              <li>
+              </a>
+              <a
+                href="https://instagram.com/magazingorelski?igshid=MzMyNGUyNmU2YQ%3D%3D&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <AiFillInstagram />
-              </li>
-              <li>
+              </a>
+              <a
+                href="https://www.tiktok.com/@sladkarnicasarai"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <RiTiktokFill />
-              </li>
-              <li>
+              </a>
+              <a
+                href="https://maps.app.goo.gl/bzXP5sGxwGwU8UBa8"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FcGoogle />
-              </li>
+              </a>
             </div>
           </div>
         </div>
