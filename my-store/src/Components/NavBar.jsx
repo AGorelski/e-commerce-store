@@ -116,12 +116,14 @@ export default function Navbar({ searchBtn }) {
           <div className="auth">
             {isAuthenticated ? (
               <button onClick={handleLogoutClick}>
+                <label className="logout-label">Log out of your account</label>
                 <IoLogOutOutline />
               </button>
             ) : (
-              <button onClick={handleLoginClick}>
-                <IoLogInOutline />
-              </button>
+                <button onClick={handleLoginClick}>
+                    <label className="login-label">Log in to your account</label>
+                    <IoLogInOutline />
+                </button>
             )}
           </div>
 
