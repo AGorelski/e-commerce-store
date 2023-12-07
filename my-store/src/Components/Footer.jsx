@@ -61,11 +61,13 @@ export default function Footer() {
           </div>
         </div>
         <div className="account">
-          <h3>My Account</h3>
+          <h3>Account</h3>
           <ul>
             <li>Account</li>
             <li>Order</li>
-            <li>Cart</li>
+            <li>
+              <Link to="/cart">Cart</Link>
+            </li>
             <li>Shipping</li>
             <li>Return</li>
           </ul>
