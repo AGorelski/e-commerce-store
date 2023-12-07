@@ -40,23 +40,37 @@ export default function Products() {
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  // Services.getProducts()
-  //   .then((data) => {
-  //     setProductList(data);
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
-
   useEffect(() => {
+    let mounted = true;
     Services.getProducts()
       .then((data) => {
-        setProductList(data);
+        if (mounted) {
+          setProductList(data);
+        }
       })
       .catch((error) => {
         console.error(error);
       });
+    return () => {
+      mounted = false; // Avoids setting state if the component is unmounted
+    };
   }, []);
+
+  // const fetchProducts = () => {
+  //   Services.getProducts()
+  //     .then((data) => {
+  //       setProductList(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
+  
+  
 
   // const onSubmitProduct = async () => {
   //   try {
@@ -100,6 +114,7 @@ export default function Products() {
                   description={product.description}
                   imageUrl={product.imageUrl}
                   price={product.price}
+                  quantity={product.quantity}
                 />
               ))}
             </div>

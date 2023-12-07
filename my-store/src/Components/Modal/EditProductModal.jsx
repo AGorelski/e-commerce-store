@@ -3,11 +3,12 @@ import * as Services from "../../config/Services";
 
 const EditProductModal = ({ onClose, id }) => {
   const [productData, setProductData] = useState({
-    name: "",
-    category: "",
-    description: "",
-    image: "",
-    price: 0,
+    name: null,
+    category: null,
+    description: null,
+    imageUrl: null,
+    price: null,
+    quantity: null,
   });
 
   const handleInputChange = (e) => {
@@ -16,16 +17,19 @@ const EditProductModal = ({ onClose, id }) => {
 
   const updateProductInfo = async () => {
     try {
-      await Services.updateProduct(id, productData);
+      // Filter out null values
+      const updatedFields = Object.fromEntries(
+        Object.entries(productData).filter(([_, value]) => value != null)
+      );
+
+      await Services.updateProduct(id, updatedFields);
       onClose(); // Close modal after successful update
-      // Optionally, show a success message to the user
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleBackdropClick = (event) => {
-    // Check if the click is on the backdrop (modal) and not the content
     if (event.currentTarget === event.target) {
       onClose();
     }
@@ -49,7 +53,7 @@ const EditProductModal = ({ onClose, id }) => {
 
         <input
           type="text"
-          name="name"
+          name="category"
           placeholder="Product category..."
           value={productData.category}
           onChange={handleInputChange}
@@ -57,7 +61,7 @@ const EditProductModal = ({ onClose, id }) => {
 
         <input
           type="text"
-          name="name"
+          name="description"
           placeholder="Product description..."
           value={productData.description}
           onChange={handleInputChange}
@@ -65,17 +69,25 @@ const EditProductModal = ({ onClose, id }) => {
 
         <input
           type="text"
-          name="name"
+          name="imageUrl"
           placeholder="Product image..."
-          value={productData.image}
+          value={productData.imageUrl}
           onChange={handleInputChange}
         />
 
         <input
           type="text"
-          name="name"
+          name="price"
           placeholder="Product price..."
           value={productData.price}
+          onChange={handleInputChange}
+        />
+
+        <input
+          type="text"
+          name="quantity"
+          placeholder="Product quantity..."
+          value={productData.quantity}
           onChange={handleInputChange}
         />
 
