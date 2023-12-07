@@ -13,6 +13,7 @@ const Modal = ({ onClose }) => {
   const [newProductDescription, setNewProductDescription] = useState("");
   const [newProductImage, setNewProductImage] = useState("");
   const [newProductPrice, setNewProductPrice] = useState(0);
+  const [newProductQuantity, setNewProductQuantity] = useState(0);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -35,7 +36,8 @@ const Modal = ({ onClose }) => {
         newProductCategory,
         newProductDescription,
         newProductImage,
-        newProductPrice
+        newProductPrice,
+        newProductQuantity
       );
 
       onClose();
@@ -94,6 +96,13 @@ const Modal = ({ onClose }) => {
           placeholder="Product price..."
           //value={newProductPrice}
           onChange={(e) => setNewProductPrice(Number(e.target.value))}
+        />
+
+        <input
+          type="number"
+          placeholder="Product quantity..."
+          //value={newProductPrice}
+          onChange={(e) => setNewProductQuantity(Number(e.target.value))}
         />
         <button onClick={onSubmitProduct}>Add Product</button>
       </div>

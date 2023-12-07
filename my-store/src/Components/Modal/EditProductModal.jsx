@@ -76,7 +76,7 @@ const EditProductModal = ({ onClose, id }) => {
         />
 
         <input
-          type="text"
+          type="number"
           name="price"
           placeholder="Product price..."
           value={productData.price}
@@ -84,7 +84,7 @@ const EditProductModal = ({ onClose, id }) => {
         />
 
         <input
-          type="text"
+          type="number"
           name="quantity"
           placeholder="Product quantity..."
           value={productData.quantity}
