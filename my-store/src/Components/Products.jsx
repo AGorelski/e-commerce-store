@@ -10,7 +10,7 @@ import * as Services from "../config/Services";
 import Item from "./items/Item";
 import Modal from "./Modal/AddProductModal";
 
-export default function Products() {
+export default function Products({addToCart}) {
   // {product, setProduct, detail, view, close, setClose, addToCart}
   // //const {loginWithRedirect, isAuthenticated} = useAuth0();
   // const filterProduct = (product) =>
@@ -106,7 +106,7 @@ export default function Products() {
           <div className="product-box">
             <div className="content">
               {productList.map((product) => (
-                <Item
+                <Item 
                   key={product.id} // Make sure to specify a unique 'key' prop
                   id={product.id}
                   name={product.name}
@@ -115,6 +115,7 @@ export default function Products() {
                   imageUrl={product.imageUrl}
                   price={product.price}
                   quantity={product.quantity}
+                  addToCart={addToCart}
                 />
               ))}
             </div>

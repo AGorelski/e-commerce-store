@@ -10,7 +10,7 @@ import EditProductModal from "../Modal/EditProductModal";
 export default function Item(props) {
   // Use a single props object
 
-  const { id, name, category, description, imageUrl, price, quantity } = props; // Destructure props
+  const { id, name, category, description, imageUrl, price, quantity, addToCart } = props; // Destructure props
 
   //   const [updatedName, setUpdatedName] = useState("");
   // const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -64,24 +64,13 @@ export default function Item(props) {
         <h4>${price}</h4>
       </div>
 
-      <button onClick={() => onDeleteProduct(id)}>Delete Product</button>
-      <div>
-        <button onClick={handleOpenModal}>Edit</button>
+      <div className="buttons">
+        <button className="delete-btn" onClick={() => onDeleteProduct(id)}>Delete Product</button>
+        <button className="edit-btn" onClick={handleOpenModal}>Edit</button>
         {showModal && <EditProductModal onClose={handleCloseModal} id={id} />}
 
-        <button className="add-to-cart">Add to Cart</button>
+        <button className="add-to-cart" onClick={() => addToCart({ id, name, category, imageUrl, price, quantity })}>Add to Cart</button>
       </div>
-      {/* {showDetailsModal && (
-        <ProductDetailsModal
-          onClose={handleDetailsModalClose}
-          name={name}
-          category={category}
-          description={description}
-          imageUrl={imageUrl}
-          price={price}
-          availability={quantity > 0 ? "Available" : "Not Available"}
-        />
-      )} */}
     </div>
   );
 }
