@@ -54,93 +54,98 @@ export default function Cart({ cart, setCart }) {
 
   return (
     <div>
-      <div className="cart_container">
-        {cart.map((item) => {
-          return (
-            <div className="cart_item" key={item.id}>
-              <div className="img_box">
-                <img src={item.imageUrl} alt={item.name} />
-              </div>
-              <div className="detail">
-                <div className="info">
-                  <h4>{item.category}</h4>
-                  <h3>{item.name}</h3>
-                  <p>Price: ${item.price}</p>
-                  <div className="qty">
-                    <button
-                      className="increase_qty"
-                      onClick={() => increaseQty(item)}
-                    >
-                      +
-                    </button>
-                    <input type="text" value={item.qty}></input>
-                    <button
-                      className="decrease_qty"
-                      onClick={() => decreaseQty(item)}
-                    >
-                      -
-                    </button>
-                  </div>
-                  <h4 className="subtotal">
-                    Sub Total: ${item.price * item.qty}
-                  </h4>
-                </div>
-                <div className="close">
-                  <button
-                    className="remove_item"
-                    onClick={() => removeProduct(item)}
-                  >
-                    <AiOutlineClose />
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-
-        {/* {cart.length === 0 &&
+      {cart.length === 0 &&
                 <div className='empty_cart'>
                     <h2 className='empty'>Cart is Empty</h2>
                     <Link to='/products' className='cart_button'>Shop Now</Link>
                 </div>}
-                <div className="content">
-                    {
-                        cart.map((item) =>
-                        {
-                            return(
-                                <div className="cart_item" key={item.id}>
-                                    <div className="img_box">
-                                        <img src={item.Img} alt={item.Title} />
-                                    </div>
-                                    <div className="detail">
-                                        <div className='info'>
-                                            <h4>{item.Category}</h4>
-                                            <h3>{item.Title}</h3>
-                                            <p>Price: ${item.Price}</p>
-                                            <div className='qty'>
-                                                <button className='increase_qty' onClick={() => increaseQty(item)}>+</button>
-                                                <input type="text" value={item.qty}></input>
-                                                <button className='decrease_qty' onClick={() => decreaseQty(item)}>-</button>
-                                            </div>
-                                            <h4 className='subtotal'>Sub Total: ${item.Price * item.qty}</h4>
-                                        </div>
-                                        <div className='close'>
-                                            <button className='remove_item' onClick={() => removeProduct(item)}><AiOutlineClose /></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
+                <div className="cart_container">
+                  {cart.map((item) => {
+                    return (
+                      <div className="cart_item" key={item.id}>
+                        <div className="img_box">
+                          <img src={item.imageUrl} alt={item.name} />
+                        </div>
+                        <div className="detail">
+                          <div className="info">
+                            <h4>{item.category}</h4>
+                            <h3>{item.name}</h3>
+                            <p>Price: ${item.price}</p>
+                            <div className="qty">
+                              <button
+                                className="increase_qty"
+                                onClick={() => increaseQty(item)}
+                              >
+                                +
+                              </button>
+                              <input type="text" value={item.qty}></input>
+                              <button
+                                className="decrease_qty"
+                                onClick={() => decreaseQty(item)}
+                              >
+                                -
+                              </button>
+                            </div>
+                            <h4 className="subtotal">
+                              Sub Total: ${item.price * item.qty}
+                            </h4>
+                          </div>
+                          <div className="close">
+                            <button
+                              className="remove_item"
+                              onClick={() => removeProduct(item)}
+                            >
+                              <AiOutlineClose />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  {/* {cart.length === 0 &&
+                          <div className='empty_cart'>
+                              <h2 className='empty'>Cart is Empty</h2>
+                              <Link to='/products' className='cart_button'>Shop Now</Link>
+                          </div>}
+                          <div className="content">
+                              {
+                                  cart.map((item) =>
+                                  {
+                                      return(
+                                          <div className="cart_item" key={item.id}>
+                                              <div className="img_box">
+                                                  <img src={item.Img} alt={item.Title} />
+                                              </div>
+                                              <div className="detail">
+                                                  <div className='info'>
+                                                      <h4>{item.Category}</h4>
+                                                      <h3>{item.Title}</h3>
+                                                      <p>Price: ${item.Price}</p>
+                                                      <div className='qty'>
+                                                          <button className='increase_qty' onClick={() => increaseQty(item)}>+</button>
+                                                          <input type="text" value={item.qty}></input>
+                                                          <button className='decrease_qty' onClick={() => decreaseQty(item)}>-</button>
+                                                      </div>
+                                                      <h4 className='subtotal'>Sub Total: ${item.Price * item.qty}</h4>
+                                                  </div>
+                                                  <div className='close'>
+                                                      <button className='remove_item' onClick={() => removeProduct(item)}><AiOutlineClose /></button>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      )
+                                  })
+                              }
+                          </div>
+                          {
+                              cart.length > 0 &&
+                              <>
+                              <h2 className='total_price'>Total ${totalPrice}</h2>
+                              <button className='checkout'>Checkout</button>
+                              </>
+                          } */}
                 </div>
-                {
-                    cart.length > 0 &&
-                    <>
-                    <h2 className='total_price'>Total ${totalPrice}</h2>
-                    <button className='checkout'>Checkout</button>
-                    </>
-                } */}
-      </div>
       {cart.length > 0 && (
         <div className="checkout">
           <h2 className="total_price">Total ${totalPrice}</h2>

@@ -11,7 +11,7 @@ import Item from "./items/Item";
 import Modal from "./Modal/AddProductModal";
 import AddProductModal from "./Modal/AddProductModal";
 
-export default function Products({ addToCart, userRole }) {
+export default function Products({ addToCart, addToFav, userRole }) {
   const [productList, setProductList] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
@@ -97,6 +97,7 @@ export default function Products({ addToCart, userRole }) {
                   price={product.price}
                   quantity={product.quantity}
                   addToCart={addToCart}
+                  addToFav={addToFav}
                   userRole={userRole}
                 />
               ))}

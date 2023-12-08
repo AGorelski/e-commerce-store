@@ -1,0 +1,153 @@
+.container .product-box {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.container h4 {
+    margin: 20px;
+    font-size: 24px;
+    /* Resets margin */
+}
+
+.container .product-box .content {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.container .product-box .content .box {
+    position: relative;
+    padding: 10px 20px;
+    overflow: hidden;
+    width: 330px;
+    height: 450px;
+    border: 1px solid #e2e0e0;
+    margin-bottom: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.container .product-box .content .box:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.container .product-box .content .box .close {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+}
+
+.container .product-box .content .box .img_box {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2e0e0;
+}
+
+.container .product-box .content .box .img_box img {
+    width: 100%; /* Make image responsive */
+    height: auto;
+    margin-right: 50px;
+}
+
+.container .product-box .content .box .img_box .icon {
+    z-index: 1;
+    position: relative;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    transition: 0.5s;
+}
+
+.container .product-box .content .box:hover .img_box .icon {
+    transform: translateX(-90px);
+}
+
+.container .product-box .content .box .img_box .icon li {
+    list-style: none;
+    padding: 10px 10px;
+    color: #010f1c;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: #fff;
+    transition: 0.5s;
+    font-size: 24px;
+}
+
+.container .product-box .content .box .img_box .icon li:hover {
+    background: #0989ff;
+    color: white;
+}
+
+.container .product-box .content .box .detail {
+    margin-top: 10px;
+}
+
+.container .product-box .content .box .buttons {
+    text-align: center;
+    /* Center align content */
+    margin: 5px auto;
+    /* Centered with automatic horizontal margins */
+    padding: 0px 0px 5px 5px;
+}
+
+.container .product-box .content .box .buttons .add-to-cart {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, .1) 0 6px 20px;
+    box-sizing: border-box;
+    margin: 10px;
+    color: #121212;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 1 1 auto;
+    font-family: Inter, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s, -webkit-box-shadow .2s;
+    white-space: nowrap;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.container .product-box .content .box .buttons .add-to-cart:hover {
+    box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+}
+
+
+.container .product-box .content .box .detail h3 {
+    font-size: 18px;
+    margin-top: 5px;
+    color: #010f1c;
+    transition: 0.5s;
+}
+
+.container .product-box .content .box:hover .detail h3 {
+    color: #0989ff;
+}
+
+
+.container .product-box .content .box .detail h4 {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #0989ff;
+    letter-spacing: 1px;
+}

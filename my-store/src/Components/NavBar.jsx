@@ -79,7 +79,7 @@ export default function Navbar({ searchBtn }) {
                   <span className="user-email">Hello, {userEmail}</span>{" "}
                   {/* Display user email */}
                   <FaUserCircle className="user-icon"/>
-                  <Link to="/" className="link">
+                  <Link to="/favourites" className="link">
                     <AiOutlineHeart />
                   </Link>
                   <Link to="/cart" className="link">
@@ -88,7 +88,7 @@ export default function Navbar({ searchBtn }) {
                 </>
               ) : (
                 <>
-                  <Link to="/" className="link">
+                  <Link to="/favourites" className="link">
                     <AiOutlineHeart />
                   </Link>
                   <Link to="/cart" className="link">

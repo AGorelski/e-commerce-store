@@ -19,6 +19,7 @@ export default function Item(props) {
     price,
     quantity,
     addToCart,
+    addToFav,
     userRole,
   } = props; // Destructure props
 
@@ -63,7 +64,12 @@ export default function Item(props) {
           <li onClick={() => navigate(`/products/${id}`)}>
             <HiOutlineEye />
           </li>
-          <li>
+          <li
+            className="add-to-fav"
+            onClick={() =>
+              addToFav({ id, name, category, imageUrl, price })
+            }
+          >
             <AiOutlineHeart />
           </li>
         </div>

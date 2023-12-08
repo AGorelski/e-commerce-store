@@ -19,12 +19,17 @@ function App() {
   //add to cart
   const [cart, setCart] = useState([])
 
+  //add to fav
+  const [fav, setFav] = useState([])
+
   //product detail
   const [close, setClose] = useState(false)
   const [detail, setDetail] = useState([])
 
   //filter product
   const [product, setProduct] = useState(HomeProducts)
+
+
   const searchBtn = (product) =>
   {
     const change = HomeProducts.filter((x) =>
@@ -64,12 +69,22 @@ function App() {
     }
   };
 
+  const addToFav = (product) => {
+    const exist = fav.find((x) => x.id === product.id);
+    if (exist) {
+      alert("This product has already been added to your favourites!");
+    } else {
+      setFav([...fav, { ...product}]);
+      alert("The product has been added to your favourites");
+    }
+  };
+
   return (
      <div>
 
       <BrowserRouter>
       <Navbar searchBtn={searchBtn}/>
-      <Rout product={product} setProduct={setProduct} detail={detail} view={view} close={close} setClose={setClose} cart={cart} setCart={setCart} addToCart={addToCart} userRole={userRole}/>
+      <Rout product={product} setProduct={setProduct} detail={detail} view={view} close={close} setClose={setClose} cart={cart} setCart={setCart} addToCart={addToCart} fav={fav} setFav={setFav} addToFav={addToFav} userRole={userRole}/>
       <Footer />
       </BrowserRouter>
 
