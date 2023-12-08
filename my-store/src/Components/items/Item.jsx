@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../config/firebase";
+
 import { useNavigate } from "react-router-dom";
 
 import { HiOutlineEye } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
 
 import * as Services from "../../config/Services";
+// import { user } from "../../config/firebase";
 import EditProductModal from "../Modal/EditProductModal";
 
 export default function Item(props) {
@@ -22,6 +27,8 @@ export default function Item(props) {
     addToFav,
     userRole,
   } = props; // Destructure props
+
+  const [user] = useAuthState(auth);
 
   //   const [updatedName, setUpdatedName] = useState("");
   // const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -66,9 +73,7 @@ export default function Item(props) {
           </li>
           <li
             className="add-to-fav"
-            onClick={() =>
-              addToFav({ id, name, category, imageUrl, price })
-            }
+            onClick={() => addToFav({ id, name, category, imageUrl, price })}
           >
             <AiOutlineHeart />
           </li>
@@ -95,9 +100,15 @@ export default function Item(props) {
 
         <button
           className="add-to-cart"
-          onClick={() =>
-            addToCart({ id, name, category, imageUrl, price, quantity })
-          }
+          onClick={() => {
+            if (!user) {
+              // If user is not signed in, display an alert
+              alert("You should sign in in order to add products to your cart");
+            } else {
+              // If user is signed in, add to cart
+              addToCart({ id, name, category, imageUrl, price, quantity });
+            }
+          }}
         >
           Add to Cart
         </button>

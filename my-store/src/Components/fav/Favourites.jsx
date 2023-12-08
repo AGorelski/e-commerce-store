@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import "../../assets/styles/favourites.css";
 
-export default function Favourites({ fav, setFav }) {
+export default function Favourites({ fav, setFav, addToCart }) {
   const navigate = useNavigate();
 
   //Remove an item
