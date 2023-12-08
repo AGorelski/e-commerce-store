@@ -24,7 +24,6 @@ function App() {
 
   //product detail
   const [close, setClose] = useState(false);
-  const [detail, setDetail] = useState([]);
 
   //filter product
   const [product, setProduct] = useState(HomeProducts);
@@ -34,11 +33,6 @@ function App() {
       return x.Category === product;
     });
     setProduct(change);
-  };
-  //product detail
-  const view = (product) => {
-    setDetail([{ ...product }]);
-    setClose(true);
   };
 
   //gets the role of the current user
@@ -86,8 +80,6 @@ function App() {
         <Rout
           product={product}
           setProduct={setProduct}
-          detail={detail}
-          view={view}
           close={close}
           setClose={setClose}
           cart={cart}

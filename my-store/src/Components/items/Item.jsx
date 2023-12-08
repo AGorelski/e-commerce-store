@@ -30,22 +30,12 @@ export default function Item(props) {
 
   const [user] = useAuthState(auth);
 
-  //   const [updatedName, setUpdatedName] = useState("");
-  // const [showDetailsModal, setShowDetailsModal] = useState(false);
   const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
-
-  // const handleDetailsClick = () => {
-  //   setShowDetailsModal(true);
-  // };
-
-  // const handleDetailsModalClose = () => {
-  //   setShowDetailsModal(false);
-  // };
 
   const onDeleteProduct = async (id) => {
     try {
