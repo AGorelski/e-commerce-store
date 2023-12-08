@@ -92,6 +92,22 @@ export const getUserRole = async (userId) => {
     }
 };
 
+export const getUserCart = async (userId) => {
+    const cartRef = collection(db, `users/${userId}/cart`);
+    const snapshot = await getDocs(cartRef);
+    const cartItems = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return cartItems;
+};
+
+
+export const getUserFav = async (userId) => {
+    const favRef = collection(db, `users/${userId}/favorites`);
+    const snapshot = await getDocs(favRef);
+    const favItems = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return favItems;
+};
+
+
 export const updateUserCart = async (userId, cartItems) => {
     const userCartRef = collection(db, `users/${userId}/cart`);
     await Promise.all(

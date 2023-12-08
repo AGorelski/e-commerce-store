@@ -1,6 +1,7 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { HiOutlineEye } from "react-icons/hi";
 
+import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../config/firebase";
 import * as Services from "../../config/Services"
@@ -8,6 +9,26 @@ import * as Services from "../../config/Services"
 import "../../assets/styles/favourites.css";
 
 export default function Favourites({ fav, setFav, addToCart }) {
+
+  // const [favorite, setFav] = useState([]);
+
+  useEffect(() => {
+    const fetchFavItems = async (userId) => {
+      const fetchedFav = await Services.getUserFav(userId);
+      setFav(fetchedFav);
+    };
+
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        fetchFavItems(user.uid);
+      } else {
+        setFav([]);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const navigate = useNavigate();
 
   //Remove an item
