@@ -4,7 +4,7 @@ import * as Services from "../../config/Services";
 
 import "../../assets/styles/productDetails.css";
 
-const ProductDetails = () => {
+const ProductDetails = ({ id, addToCart }) => {
   const { productId } = useParams();
   const navigate = useNavigate(); // Hook to navigate to different routes
   const [product, setProduct] = useState(null);
@@ -44,6 +44,7 @@ const ProductDetails = () => {
         <img src={imageUrl} alt={name} />
         <p>Price: ${price}</p>
         <p>{quantity > 0 ? "Product Available" : "Not Available at the moment"}</p>
+        <button className="add-to-cart" onClick={() => addToCart({ id, product })}>Add to Cart</button>
       </div>
     </div>
   );

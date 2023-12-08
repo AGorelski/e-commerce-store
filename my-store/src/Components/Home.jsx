@@ -71,7 +71,7 @@ export default function Home({detail, view, close, setClose, addToCart}) {
                         <div className="detail">
                             <h2>{highestPricedProduct.name}</h2>
                             <h3>Only for {highestPricedProduct.price}$</h3>
-                            <Link to={`/products/${highestPricedProduct.id}`} className="link">Shop Now <BsArrowRight /></Link>
+                            <Link to="/products" className="link">Shop Now <BsArrowRight /></Link>
                         </div>
                         <div className="img_box">
                             <img src={highestPricedProduct.imageUrl} alt={highestPricedProduct.name} />
