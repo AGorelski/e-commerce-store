@@ -9,31 +9,10 @@ import { useEffect, useState } from "react";
 import * as Services from "../config/Services";
 import Item from "./items/Item";
 import Modal from "./Modal/AddProductModal";
+import AddProductModal from "./Modal/AddProductModal";
 
-export default function Products({addToCart}) {
-  // {product, setProduct, detail, view, close, setClose, addToCart}
-  // //const {loginWithRedirect, isAuthenticated} = useAuth0();
-  // const filterProduct = (product) =>
-  // {
-  //     const update = HomeProducts.filter((x) =>
-  //     {
-  //         return x.category === product;
-  //     })
-  //     setProduct(update);
-  // }
-  // const allProducts = () =>
-  // {
-  //     setProduct(HomeProducts)
-  // }
-
+export default function Products({ addToCart, userRole }) {
   const [productList, setProductList] = useState([]);
-
-  //New product state
-  // const [newProductName, setNewProductName] = useState("");
-  // const [newProductCategory, setNewProductCategory] = useState("");
-  // const [newProductDescription, setNewProductDescription] = useState("");
-  // const [newProductImage, setNewProductImage] = useState("");
-  // const [newProductPrice, setNewProductPrice] = useState(0);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -52,7 +31,7 @@ export default function Products({addToCart}) {
         console.error(error);
       });
     return () => {
-      mounted = false; // Avoids setting state if the component is unmounted
+      mounted = false;
     };
   }, []);
 
@@ -69,8 +48,6 @@ export default function Products({addToCart}) {
   // useEffect(() => {
   //   fetchProducts();
   // }, []);
-  
-  
 
   // const onSubmitProduct = async () => {
   //   try {
@@ -98,15 +75,19 @@ export default function Products({addToCart}) {
       <div className="products">
         <div className="products-header">
           <h2>Products</h2>
-          <button onClick={handleOpenModal} className="add-product-btn">Add Product</button>
-          {showModal && <Modal onClose={handleCloseModal} />}
+          {userRole === "admin" && (
+            <button onClick={handleOpenModal} className="add-product-btn">
+              Add Product
+            </button>
+          )}
+          {showModal && <AddProductModal onClose={handleCloseModal} />}
         </div>
-        
+
         <div className="container">
           <div className="product-box">
             <div className="content">
               {productList.map((product) => (
-                <Item 
+                <Item
                   key={product.id} // Make sure to specify a unique 'key' prop
                   id={product.id}
                   name={product.name}
@@ -116,6 +97,7 @@ export default function Products({addToCart}) {
                   price={product.price}
                   quantity={product.quantity}
                   addToCart={addToCart}
+                  userRole={userRole}
                 />
               ))}
             </div>

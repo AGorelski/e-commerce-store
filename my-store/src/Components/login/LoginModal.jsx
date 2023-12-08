@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../config/firebase';
+import * as Services from '../../config/Services';
+
 
 import "../../assets/styles/loginModal.css"
 
@@ -10,12 +12,16 @@ const LoginModal = ({ onClose }) => {
 
     const signUp = async () => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const uid = userCredential.user.uid;
+            // Assign default role
+            await Services.assignUserRole(uid, email);
             onClose();
         } catch (error) {
             console.error(error);
         }
     };
+    
 
     const signIn = async () => {
         try {
@@ -28,12 +34,19 @@ const LoginModal = ({ onClose }) => {
 
     const signInGoogle = async () => {
         try {
-            await signInWithPopup(auth, provider);
+            const userCredential = await signInWithPopup(auth, provider);
+            const uid = userCredential.user.uid;
+            const email = userCredential.user.email;
+    
+            await Services.handleGoogleSignIn(uid, email);
+    
             onClose();
         } catch (error) {
-            console.error(error);
+            console.error("Error in Google sign-in:", error);
         }
     };
+    
+    
 
     const handleBackdropClick = (event) => {
         // Check if the click is on the backdrop (modal) and not the content

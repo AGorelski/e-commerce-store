@@ -1,4 +1,4 @@
-import { getDocs, collection, doc, addDoc, deleteDoc, updateDoc, getDoc } from "firebase/firestore"
+import { getDocs, collection, doc, addDoc, deleteDoc, updateDoc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "./firebase";
 
 const productsCollectionRef = collection(db, "products");
@@ -58,6 +58,40 @@ export const updateProduct = async (id, updatedFields) => {
     const productDoc = doc(db, "products", id);
     await updateDoc(productDoc, updatedFields);
 };
+
+//Handles users collection
+export const assignUserRole = async (uid, email, role = "user") => {
+    try {
+        await setDoc(doc(db, "users", uid), { email, role });
+    } catch (error) {
+        console.error("Error in assigning user role:", error);
+    }
+};
+
+export const handleGoogleSignIn = async (uid, email) => {
+    try {
+        const userDocRef = doc(db, "users", uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (!userDoc.exists()) {
+            // Set the user document with the default role if it doesn't exist
+            await setDoc(userDocRef, { email, role: "user" });
+        }
+    } catch (error) {
+        console.error("Error in handling Google sign-in:", error);
+    }
+};
+
+export const getUserRole = async (userId) => {
+    const userDocRef = doc(db, "users", userId);
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+        return userDoc.data().role;
+    } else {
+        return null;
+    }
+};
+
 
 
 

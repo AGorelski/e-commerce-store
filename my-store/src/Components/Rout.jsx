@@ -6,12 +6,12 @@ import Contact from "./Contact"
 import About from "./about/About"
 import ProductDetails from "./product-details/ProductDetails"
 
-export default function Rout({product, setProduct, detail, view, close, setClose, cart, setCart, addToCart}) {
+export default function Rout({product, setProduct, detail, view, close, setClose, cart, setCart, addToCart, userRole}) {
     return(
         <div>
             <Routes>
                 <Route path="/" element={<Home detail={detail} view={view} close={close} setClose={setClose} addToCart={addToCart}/>}/>
-                <Route path="/products" element={<Products addToCart={addToCart} />}/>
+                <Route path="/products" element={<Products addToCart={addToCart} userRole={userRole}/>}/>
                 <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>}/>
                 <Route path="/contact" element={<Contact />}/>
                 <Route path="/about" element={<About />}/>

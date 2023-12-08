@@ -3,17 +3,26 @@ import { BrowserRouter } from "react-router-dom"
 import Rout from "./Components/Rout"
 import Footer from "./Components/Footer"
 
+import { auth } from "./config/firebase"
+import { onAuthStateChanged } from "firebase/auth"
+
+import * as Services from "./config/Services"
+
 import HomeProducts from "./Components/HomeProducts"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function App() {
-  
+  // State for user role
+  const [userRole, setUserRole] = useState(null); 
+
   //add to cart
   const [cart, setCart] = useState([])
+
   //product detail
   const [close, setClose] = useState(false)
   const [detail, setDetail] = useState([])
+
   //filter product
   const [product, setProduct] = useState(HomeProducts)
   const searchBtn = (product) =>
@@ -30,6 +39,18 @@ function App() {
     setDetail([{...product}])
     setClose(true)
   }
+
+  //gets the role of the current user
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const role = await Services.getUserRole(user.uid);
+        setUserRole(role);
+      } else {
+        setUserRole(null);
+      }
+    });
+  }, []);
 
  
   
@@ -48,7 +69,7 @@ function App() {
 
       <BrowserRouter>
       <Navbar searchBtn={searchBtn}/>
-      <Rout product={product} setProduct={setProduct} detail={detail} view={view} close={close} setClose={setClose} cart={cart} setCart={setCart} addToCart={addToCart}/>
+      <Rout product={product} setProduct={setProduct} detail={detail} view={view} close={close} setClose={setClose} cart={cart} setCart={setCart} addToCart={addToCart} userRole={userRole}/>
       <Footer />
       </BrowserRouter>
 

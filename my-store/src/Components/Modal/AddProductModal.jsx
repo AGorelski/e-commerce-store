@@ -4,7 +4,7 @@ import "../../assets/styles/addModal.css";
 import { useEffect, useState } from "react";
 import * as Services from "../../config/Services";
 
-const Modal = ({ onClose }) => {
+const AddProductModal = ({ onClose }) => {
   const [productList, setProductList] = useState([]);
 
   //New product state
@@ -110,4 +110,4 @@ const Modal = ({ onClose }) => {
   );
 };
 
-export default Modal;
+export default AddProductModal;
