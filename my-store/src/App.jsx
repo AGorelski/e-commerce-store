@@ -1,14 +1,14 @@
-import Navbar from "./Components/NavBar";
+import Navbar from "./Components/navigation/NavBar";
 import { BrowserRouter } from "react-router-dom";
 import Rout from "./Components/Rout";
-import Footer from "./Components/Footer";
+import Footer from "./Components/footer/Footer";
 
 import { auth } from "./config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
 import * as Services from "./config/Services";
 
-import HomeProducts from "./Components/HomeProducts";
+import HomeProducts from "./lib/HomeProducts";
 
 import { useState, useEffect } from "react";
 

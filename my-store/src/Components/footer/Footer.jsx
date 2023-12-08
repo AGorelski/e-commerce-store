@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-import "../assets/styles/footer.css";
+import "../../assets/styles/footer.css";
 
 export default function Footer() {
   return (

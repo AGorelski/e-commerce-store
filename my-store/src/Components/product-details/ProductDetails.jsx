@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import * as Services from "../../config/Services";
 
 import "../../assets/styles/productDetails.css";
 
 const ProductDetails = ({ id, addToCart }) => {
   const { productId } = useParams();
+
   const navigate = useNavigate(); // Hook to navigate to different routes
+
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -37,14 +39,23 @@ const ProductDetails = ({ id, addToCart }) => {
   return (
     <div className="modal" onClick={handleBackdropClick}>
       <div className="modal-content">
-        <span className="close" onClick={onClose}>&times;</span>
+        <span className="close" onClick={onClose}>
+          &times;
+        </span>
         <h3>{name}</h3>
         <p>Category: {category}</p>
         <p>Description: {description}</p>
         <img src={imageUrl} alt={name} />
         <p>Price: ${price}</p>
-        <p>{quantity > 0 ? "Product Available" : "Not Available at the moment"}</p>
-        <button className="add-to-cart" onClick={() => addToCart({ id, product })}>Add to Cart</button>
+        <p>
+          {quantity > 0 ? "Product Available" : "Not Available at the moment"}
+        </p>
+        <button
+          className="add-to-cart"
+          onClick={() => addToCart({ id, product })}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );

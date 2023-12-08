@@ -423,7 +423,7 @@
     margin-right: auto; 
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
     .banner .container .detail .img_box img {
         width: 80%; 
     }

@@ -9,7 +9,6 @@ import { HiOutlineEye } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
 
 import * as Services from "../../config/Services";
-// import { user } from "../../config/firebase";
 import EditProductModal from "../Modal/EditProductModal";
 
 export default function Item(props) {
@@ -44,14 +43,6 @@ export default function Item(props) {
       console.error(error);
     }
   };
-
-  //   const onUpdateProductName = async (id) => {
-  //     try {
-  //       await Services.updateProductName(id, updatedName);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
 
   return (
     <div className="box" key={id}>

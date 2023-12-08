@@ -2,21 +2,18 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import * as Services from "../config/Services";
+import * as Services from "../../config/Services";
 
 import { BsArrowRight } from "react-icons/bs";
 import { FaTruckMoving } from "react-icons/fa";
 import { FcMoneyTransfer } from "react-icons/fc";
 import { TbDiscount } from "react-icons/tb";
 import { FiPhoneCall } from "react-icons/fi";
-import { BsBagCheck } from "react-icons/bs";
-import { HiOutlineEye } from "react-icons/hi";
-import { AiOutlineHeart, AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
+import "../../assets/styles/home.css";
 
-import "../assets/styles/home.css";
-
-export default function Home({close, setClose, addToCart }) {
+export default function Home({ close, setClose, addToCart }) {
   const [productList, setProductList] = useState([]);
   const [highestPricedProduct, setHighestPricedProduct] = useState(null);
 
@@ -159,7 +156,11 @@ export default function Home({close, setClose, addToCart }) {
         <div className="container">
           {productList.map((curElm) => {
             return (
-              <div className="box" key={curElm.id} onClick={() => navigate(`/products`)}>
+              <div
+                className="box"
+                key={curElm.id}
+                onClick={() => navigate(`/products`)}
+              >
                 <div className="img_box">
                   <img src={curElm.imageUrl} alt={curElm.name}></img>
                 </div>
@@ -175,19 +176,22 @@ export default function Home({close, setClose, addToCart }) {
         </div>
       </div>
       <div className="banner">
-      {highestPricedProduct && (
+        {highestPricedProduct && (
           <div className="container">
             <div className="detail">
-            <h4>LATEST PRODUCT ADDED</h4>
-            <h3>{highestPricedProduct.name}</h3>
-            <p>Only for the price of ${highestPricedProduct.price}</p>
-            <Link to="/products" className="link">
-              Shop now <BsArrowRight />
-            </Link>
-          </div>
-          <div className="img_box">
-            <img src={highestPricedProduct.imageUrl} alt={highestPricedProduct.name} />
-          </div>
+              <h4>LATEST PRODUCT ADDED</h4>
+              <h3>{highestPricedProduct.name}</h3>
+              <p>Only for the price of ${highestPricedProduct.price}</p>
+              <Link to="/products" className="link">
+                Shop now <BsArrowRight />
+              </Link>
+            </div>
+            <div className="img_box">
+              <img
+                src={highestPricedProduct.imageUrl}
+                alt={highestPricedProduct.name}
+              />
+            </div>
           </div>
         )}
       </div>

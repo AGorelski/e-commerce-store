@@ -7,10 +7,10 @@ import { FaUserCircle } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 import { signOut, onAuthStateChanged } from "firebase/auth";
-import { auth } from "../config/firebase";
-import LoginModal from "./login/LoginModal";
+import { auth } from "../../config/firebase";
+import LoginModal from "../login/LoginModal";
 
-import "../assets/styles/navbar.css";
+import "../../assets/styles/navbar.css";
 import { useState, useEffect } from "react";
 
 export default function Navbar({ searchBtn }) {
@@ -77,8 +77,7 @@ export default function Navbar({ searchBtn }) {
               {isAuthenticated ? (
                 <>
                   <span className="user-email">Hello, {userEmail}</span>{" "}
-                  {/* Display user email */}
-                  <FaUserCircle className="user-icon"/>
+                  <FaUserCircle className="user-icon" />
                   <Link to="/favourites" className="link">
                     <AiOutlineHeart />
                   </Link>

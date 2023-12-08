@@ -14,15 +14,14 @@ const EditProductModal = ({ onClose, id }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     let updatedValue = value;
-  
+
     // Convert 'price' and 'quantity' values to numbers
-    if (name === 'price' || name === 'quantity') {
+    if (name === "price" || name === "quantity") {
       updatedValue = value ? Number(value) : null; // Converts to number, but uses null for empty strings
     }
-  
+
     setProductData({ ...productData, [name]: updatedValue });
   };
-  
 
   const updateProductInfo = async () => {
     try {

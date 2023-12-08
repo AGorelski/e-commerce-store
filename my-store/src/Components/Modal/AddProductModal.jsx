@@ -15,8 +15,6 @@ const AddProductModal = ({ onClose }) => {
   const [newProductPrice, setNewProductPrice] = useState(0);
   const [newProductQuantity, setNewProductQuantity] = useState(0);
 
-  const [showModal, setShowModal] = useState(false);
-
   Services.getProducts()
     .then((data) => {
       setProductList(data);
@@ -47,7 +45,6 @@ const AddProductModal = ({ onClose }) => {
       setNewProductCategory("");
       setNewProductDescription("");
       setNewProductImage("");
-      //setNewProductPrice(0);
     } catch (error) {
       console.error(error);
     }
@@ -94,14 +91,12 @@ const AddProductModal = ({ onClose }) => {
         <input
           type="number"
           placeholder="Product price..."
-          //value={newProductPrice}
           onChange={(e) => setNewProductPrice(Number(e.target.value))}
         />
 
         <input
           type="number"
           placeholder="Product quantity..."
-          //value={newProductPrice}
           onChange={(e) => setNewProductQuantity(Number(e.target.value))}
         />
         <button onClick={onSubmitProduct}>Add Product</button>
