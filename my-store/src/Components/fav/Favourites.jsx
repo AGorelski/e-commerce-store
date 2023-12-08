@@ -2,6 +2,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import { HiOutlineEye } from "react-icons/hi";
 
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../config/firebase";
+import * as Services from "../../config/Services"
 
 import "../../assets/styles/favourites.css";
 
@@ -10,15 +12,11 @@ export default function Favourites({ fav, setFav, addToCart }) {
 
   //Remove an item
   const removeProduct = (product) => {
-    const exist = fav.find((x) => {
-      return x.id === product.id;
-    });
-    if (exist.qty > 0) {
-      setFav(
-        fav.filter((x) => {
-          return x.id !== product.id;
-        })
-      );
+    const exist = fav.find((x) => x.id === product.id);
+    if (exist) {
+      const updatedFav = fav.filter((x) => x.id !== product.id);
+      setFav(updatedFav);
+      Services.removeItemFromFav(auth.currentUser.uid, product.id);
     }
   };
 

@@ -106,7 +106,7 @@ export default function Item(props) {
               alert("You should sign in in order to add products to your cart");
             } else {
               // If user is signed in, add to cart
-              addToCart({ id, name, category, imageUrl, price, quantity });
+              addToCart({ id, name, category, imageUrl, price });
             }
           }}
         >

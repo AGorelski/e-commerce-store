@@ -92,6 +92,36 @@ export const getUserRole = async (userId) => {
     }
 };
 
+export const updateUserCart = async (userId, cartItems) => {
+    const userCartRef = collection(db, `users/${userId}/cart`);
+    await Promise.all(
+        cartItems.map((item) => {
+            const itemRef = doc(userCartRef, item.id);
+            return setDoc(itemRef, item);
+        })
+    );
+};
+
+export const updateUserFav = async (userId, favItems) => {
+    const userFavRef = collection(db, `users/${userId}/favorites`);
+    await Promise.all(
+        favItems.map((item) => {
+            const itemRef = doc(userFavRef, item.id);
+            return setDoc(itemRef, item);
+        })
+    );
+};
+
+export const removeItemFromCart = async (userId, productId) => {
+    const itemRef = doc(db, `users/${userId}/cart/${productId}`);
+    await deleteDoc(itemRef);
+};
+
+export const removeItemFromFav = async (userId, productId) => {
+    const itemRef = doc(db, `users/${userId}/favorites/${productId}`);
+    await deleteDoc(itemRef);
+};
+
 
 
 

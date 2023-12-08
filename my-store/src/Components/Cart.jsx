@@ -1,6 +1,8 @@
 import { AiOutlineClose } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
+import { auth } from "../config/firebase";
+import * as Services from "../config/Services"
 
 import "../assets/styles/cart.css";
 
@@ -34,15 +36,11 @@ export default function Cart({ cart, setCart }) {
 
   //Remove an item
   const removeProduct = (product) => {
-    const exist = cart.find((x) => {
-      return x.id === product.id;
-    });
+    const exist = cart.find((x) => x.id === product.id);
     if (exist.qty > 0) {
-      setCart(
-        cart.filter((x) => {
-          return x.id !== product.id;
-        })
-      );
+      const updatedCart = cart.filter((x) => x.id !== product.id);
+      setCart(updatedCart);
+      Services.removeItemFromCart(auth.currentUser.uid, product.id);
     }
   };
 
