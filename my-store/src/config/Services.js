@@ -18,14 +18,24 @@ export const getProducts = async () => {
 export const getProductById = async (productId) => {
     const productDoc = doc(db, "products", productId);
     const docSnap = await getDoc(productDoc);
-  
+
     if (docSnap.exists()) {
-      return { id: docSnap.id, ...docSnap.data() };
+        return { id: docSnap.id, ...docSnap.data() };
     } else {
-      // Handle the case where the product does not exist
+        // Handle the case where the product does not exist
     }
-  };
-  
+};
+
+export const getHighestPricedProduct = async () => {
+    const data = await getDocs(productsCollectionRef);
+    const products = data.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    // Sort products by price in descending order and pick the first one
+    const highestPricedProduct = products.sort((a, b) => b.price - a.price)[0];
+    return highestPricedProduct;
+};
+
+
 
 export const addNewProduct = async (name, category, description, imageUrl, price, quantity = 0) => {
     await addDoc(productsCollectionRef, {
@@ -40,7 +50,7 @@ export const addNewProduct = async (name, category, description, imageUrl, price
 
 
 export const deleteProduct = async (id) => {
-    const productDoc = doc(db,"products", id);
+    const productDoc = doc(db, "products", id);
     await deleteDoc(productDoc);
 }
 

@@ -5,46 +5,119 @@
     font-family: sans-serif;
     box-sizing: border-box;
 }
-.top_banner
-{
-    padding: 30px 40px;
-    width: 100%;
-    background: #e3edf6;
-}
-.top_banner .container
-{
-    max-width: 100%;
+.top_banner {
     display: flex;
     justify-content: space-between;
-}
-.top_banner .container .detail
-{
-    margin-top: 8%;
-    margin-left: 30px;
-}
-.top_banner .container .detail h2
-{
-    font-size: 52px;
-    color: #010f1c;
-    margin-right: 50%;
-    margin-bottom: 40px;
+    align-items: center;
+    background-color: #71dadc;
+    padding: 20px;
+    width: 100%;
 }
 
-.top_banner .container .detail .link
-{
+.top_banner .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.top_banner .detail {
+    flex: 1;
+    padding-left: 10%;
+}
+
+.top_banner .detail h2 {
+    font-size: 2.5em; /* Large font size for product name */
+    color: #333; /* Dark grey for contrast */
+    margin-bottom: 15px;
+}
+
+.top_banner .detail h3 {
+    font-size: 22px; /* Slightly smaller font size for price */
+    color: #ffffff; /* Blue color to attract attention to the price */
+    font-weight: bold; /* Bold for emphasis */
+    margin-bottom: 50px;
+}
+
+.top_banner .link {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.top_banner .link:focus {
+  color: #171e29;
+}
+
+.top_banner .link:hover {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+.top_banner .link:active {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+@media (min-width: 768px) {
+  .top_banner .link {
+    min-width: 170px;
+  }
+}
+/* .top_banner .link {
+
+    background-color: #28a745; 
+    color: white;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
-    color: #010f1c;
-    background: #fff;
-    transition: 0.5s;
+    transition: background-color 0.3s ease;
+} */
+
+.top_banner .img_box {
+    flex: 1;
+    text-align: left; /* Adjust text alignment */
 }
 
-.top_banner .container .detail .link:hover
-{
-    background: #0989ff;
-    color: #fff;
+.top_banner .img_box img {
+    width: 50%; /* Reduce width to half */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure image is a block-level element */
+    margin-left: auto; /* Center align image if it's smaller than container */
+    margin-right: auto; /* Center align image if it's smaller than container */
 }
+
+@media (max-width: 768px) {
+    .top_banner .img_box img {
+        width: 80%; /* Slightly larger image for smaller screens */
+    }
+}
+
+
+
 .product_type 
 {
     width: 100%;

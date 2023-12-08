@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+
+import * as Services from "../config/Services"
 
 import { BsArrowRight } from 'react-icons/bs';
 import { FaTruckMoving } from 'react-icons/fa';
@@ -15,6 +18,22 @@ import '../assets/styles/home.css'
 
 
 export default function Home({detail, view, close, setClose, addToCart}) {
+
+    const [highestPricedProduct, setHighestPricedProduct] = useState(null);
+
+    useEffect(() => {
+        const fetchHighestPricedProduct = async () => {
+            try {
+                const product = await Services.getHighestPricedProduct();
+                setHighestPricedProduct(product);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+    
+        fetchHighestPricedProduct();
+    }, []);
+    
     return(
         <div>
             {
@@ -47,15 +66,18 @@ export default function Home({detail, view, close, setClose, addToCart}) {
 
             }
             <div className="top_banner">
-                <div className="container">
-                    <div className="detail">
-                        <h2>The best Lutenica in the world, baby!</h2>
-                        <Link to='/products' className="link">Namaji Now <BsArrowRight /></Link>
+                {highestPricedProduct && (
+                    <div className="container">
+                        <div className="detail">
+                            <h2>{highestPricedProduct.name}</h2>
+                            <h3>Only for {highestPricedProduct.price}$</h3>
+                            <Link to={`/products/${highestPricedProduct.id}`} className="link">Shop Now <BsArrowRight /></Link>
+                        </div>
+                        <div className="img_box">
+                            <img src={highestPricedProduct.imageUrl} alt={highestPricedProduct.name} />
+                        </div>
                     </div>
-                    <div className="img_box">
-                        <img src="/LutenicaHD.png" alt="lutenica" />
-                    </div>
-                </div>
+                )}
             </div>
             <div className="product_type">
                 <div className="container">
